@@ -1297,6 +1297,8 @@ class BrowserPayment:
                 "--use-angle=swiftshader-webgl",
                 "--enable-unsafe-swiftshader",
             ]
+            if self.headless:
+                chrome_args.append("--headless=new")
             if self.proxy:
                 chrome_args.append(f"--proxy-server={self.proxy}")
             chrome_args.append("about:blank")
