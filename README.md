@@ -51,7 +51,7 @@ Stripe hCaptcha 分两层：
 1. **Invisible** (自动) — 若检测到机器人则展示第二层
 2. **Visible checkbox** — SwiftShader 软件渲染 WebGL 使其通过，无图片挑战
 
-必须使用 **Xvfb + `--use-gl=angle --use-angle=swiftshader-webgl`**，`--headless=new` 会被识别拦截。
+最好使用 **Xvfb + `--use-gl=angle --use-angle=swiftshader-webgl`**，`--headless=new` 会被识别拦截。
 
 > **注意**: checkbox 自动点击仅在住宅 IP 代理下有效；数据中心 IP（Azure/Vultr 等）会触发图片验证，无法自动通过。
 
@@ -75,7 +75,7 @@ cp config.example.json config.json
 - `card` — 信用卡信息
 - `billing` — 账单地址
 - `captcha.client_key` — YesCaptcha API Key (可选, API 模式才需要)
-- `proxy` — 代理地址（必须为住宅 IP）
+- `proxy` — 代理地址（最好为住宅 IP）
 - `code_system_enabled` — 兑换码门禁开关（默认 `false`，无拦截；设为 `true` 启用）
 
 ## 快速开始
@@ -231,12 +231,12 @@ auto_bindcard/
 | Python | 3.10+ |
 | Chrome | Playwright 内置 (chromium) |
 | Xvfb | 虚拟显示 (`--headless=new` 不可用) |
-| 代理 | 必须为住宅 IP |
+| 代理 | 最好为住宅 IP |
 
 ## 已知限制
 
-1. **不支持 `--headless=new`** — HeadlessChrome UA 被检测，Stripe 不加载。必须用 Xvfb。
-2. **数据中心 IP 无效** — Azure/Vultr 等 IP 会触发 hCaptcha 图片验证，无法自动通过，必须使用住宅 IP 代理。
+1. **不支持 `--headless=new`** — HeadlessChrome UA 被检测，Stripe 不加载。最好用 Xvfb。
+2. **数据中心 IP 无效** — Azure/Vultr 等 IP 会触发 hCaptcha 图片验证，无法自动通过，最好使用住宅 IP 代理。
 3. **3DS 验证** — 如果卡触发 3D Secure，无法自动完成。
 4. **卡片被拒** — 如果 Stripe 返回 "支付被拒"，是卡本身的问题，不是代码问题。
 
